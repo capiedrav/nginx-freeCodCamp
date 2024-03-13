@@ -4,8 +4,9 @@ FROM nginx:1.25.1-alpine
 EXPOSE 80
 
 # copy nginx congfiguration file
-COPY ./nginx.conf /usr/local/etc/nginx/
+RUN rm /etc/nginx/conf.d/default.conf
+COPY ./nginx.conf /etc/nginx/conf.d/
 
 # copy static content
-WORKDIR /usr/share/nginx/html/
+WORKDIR /var/www/my_site/
 COPY ./my_site/ .
